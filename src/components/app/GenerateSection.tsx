@@ -11,6 +11,8 @@ export function Generate({ user }) {
   const [loading, setLoading] = useState(false);
   const [usedQuota, setUsedQuota] = useState(user?.limit?.used);
 
+  console.log(user);
+
   useEffect(() => {
     if (input.length <= 100) setError(false);
   }, [input]);
