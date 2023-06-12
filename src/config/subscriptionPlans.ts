@@ -129,7 +129,7 @@ export const startupPlan: TierPlan = {
 export const businessPlan: TierPlan = {
   planId: env.TIER_BUSINESS_PLAN_ID as PlanName,
   currency: (businessPlanTier.currency as string) || "usd",
-  interval: (businessPlanTier.interval as string) || "monthly",
+  interval: (businessPlanTier.interval as string) || "yearly",
   promoted: false,
   name: (businessPlanTier.title as string) || "Business",
   base: getBase(businessPlanTier),
