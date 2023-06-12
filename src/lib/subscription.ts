@@ -5,11 +5,12 @@ import {
   businessPlan,
   freePlan,
   startupPlan,
+  specialPlan
 } from "@/config/subscriptionPlans";
 import { tier } from "@/lib/tier";
 
 export async function getPricingPageData(): Promise<TierPlan[]> {
-  return [freePlan, startupPlan, businessPlan];
+  return [freePlan, startupPlan, businessPlan,specialPlan];
 }
 
 interface UserSubscriptionPlan {}

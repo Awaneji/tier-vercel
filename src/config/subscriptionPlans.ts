@@ -11,6 +11,7 @@ console.log(`\n\ndata ==========\n ${JSON.stringify(data)} \n\n`);
 const freePlanTier = data.plans[env.TIER_FREE_PLAN_ID as PlanName];
 const startupPlanTier = data.plans[env.TIER_STARTUP_PLAN_ID as PlanName];
 const businessPlanTier = data.plans[env.TIER_BUSINESS_PLAN_ID as PlanName];
+const specialPlanTier = data.plans[env.TIER_SPECIAL_PLAN_ID as PlanName];
 
 const getBase = (plan: Plan): number => {
   var result = 0;
@@ -103,6 +104,15 @@ export function getPlan(planId: PlanName) {
       base: getBase(businessPlanTier),
       extraUsageRate: getExtraUsageRate(businessPlanTier),
     };
+  }else if (planId === (env.TIER_SPECIAL_PLAN_ID as PlanName)) {
+    return {
+      planId,
+      currency: (specialPlanTier.currency as string) || "usd",
+      interval: (specialPlanTier.interval as string) || "yearly",
+      name: (specialPlanTier.title as string) || "Special",
+      base: getBase(specialPlanTier),
+      extraUsageRate: getExtraUsageRate(specialPlanTier),
+    };
   }
 }
 
@@ -134,4 +144,14 @@ export const businessPlan: TierPlan = {
   name: (businessPlanTier.title as string) || "Business",
   base: getBase(businessPlanTier),
   features: getFeatures(businessPlanTier),
+};
+
+export const specialPlan: TierPlan = {
+  planId: env.TIER_SPECIAL_PLAN_ID as PlanName,
+  currency: (specialPlanTier.currency as string) || "usd",
+  interval: (specialPlanTier.interval as string) || "yearly",
+  promoted: false,
+  name: (specialPlanTier.title as string) || "Special",
+  base: getBase(specialPlanTier),
+  features: getFeatures(specialPlanTier),
 };
