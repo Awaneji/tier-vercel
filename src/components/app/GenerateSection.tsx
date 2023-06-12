@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 
-import { db } from "@/lib/db";
 import { Button } from "@/components/ui/Button";
 
 export function Generate({ user }) {
@@ -11,7 +10,6 @@ export function Generate({ user }) {
   const [suggestion, setSuggestion] = useState<String>("");
   const [loading, setLoading] = useState(false);
   const [usedQuota, setUsedQuota] = useState(user?.limit?.used);
-  const [list, setList] = useState([]);
 
   console.log(user);
 
@@ -81,21 +79,6 @@ export function Generate({ user }) {
     } catch (error) {
       console.log(error);
     }
-  };
-
-  const getGeneratedContent = async () => {
-    await db.content
-      .findMany({
-        where: {
-          userId: user?.id,
-        },
-        orderBy: {
-          generatedAt: "desc",
-        },
-      })
-      .then((dt) => {
-        console.log(dt);
-      });
   };
 
   return (
