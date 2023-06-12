@@ -19,10 +19,6 @@ export function Generate({ user }) {
     if (input.length <= 100) setError(false);
   }, [input]);
 
-  useEffect(() => {
-    getGeneratedContent();
-  });
-
   const saveSuggestion = async (suggestion: string, input: string) => {
     try {
       const res = await fetch("/api/save-suggestion", {
